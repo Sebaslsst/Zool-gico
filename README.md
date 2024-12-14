@@ -19,7 +19,8 @@ https://drive.google.com/file/d/11yHaZgNEyvEIH6pHT3hl1MfJGRo_Jf6i/view?usp=shari
 
 # Django
 Link de ingreso:
-http://localhost:8000/admin
+
+http://localhost:8000/
 
 # Super usuario:
 Edison1234
