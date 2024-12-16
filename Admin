@@ -1,0 +1,76 @@
+from django.contrib import admin
+
+
+from django.contrib import admin
+from .models import (
+    Persona,
+    Cliente,
+    Empleado,
+    Animale,
+    Jaula,
+    Veterinaria,
+    HorarioAlimentacion,
+    GuiaTuristico,
+    CompraBoleto
+)
+
+@admin.register(Persona)
+class PersonaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'edad', 'fecha_nacimiento')
+    search_fields = ('nombre',)
+    list_filter = ('fecha_nacimiento',)
+
+
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'edad', 'tipo_cliente')
+    search_fields = ('nombre', 'tipo_cliente')
+
+
+@admin.register(Empleado)
+class EmpleadoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'edad', 'zona_asignada', 'horario')
+    search_fields = ('nombre', 'zona_asignada')
+    list_filter = ('zona_asignada',)
+
+
+
+
+
+@admin.register(Animale)
+class AnimalAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'categoria', 'descripcion')
+    search_fields = ('nombre', 'categoria')
+    list_filter = ('categoria',)
+
+
+@admin.register(Jaula)
+class JaulaAdmin(admin.ModelAdmin):
+    list_display = ('id_jaula', 'ubicacion', 'dimensiones', 'estado')
+    search_fields = ('ubicacion', 'estado')
+
+
+@admin.register(Veterinaria)
+class VeterinariaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'especialidad')
+    search_fields = ('nombre', 'especialidad')
+
+
+@admin.register(HorarioAlimentacion)
+class HorarioAlimentacionAdmin(admin.ModelAdmin):
+    list_display = ('animal', 'horario', 'frecuencia')
+    search_fields = ('animal__nombre', 'frecuencia')
+
+
+@admin.register(GuiaTuristico)
+class GuiaTuristicoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'idioma')
+    search_fields = ('nombre', 'idioma')
+
+
+
+@admin.register(CompraBoleto)
+class CompraBoletoAdmin(admin.ModelAdmin):
+    list_display = ('identificador', 'fecha', 'monto_total', 'cliente')
+    search_fields = ('identificador', 'cliente__nombre')
+    list_filter = ('fecha',)
