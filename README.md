@@ -26,3 +26,5 @@ http://localhost:8000/
 Edison1234
 # Contraseña:
 654321
+# Código 
+https://github.com/Sebaslsst/Zool-gico/blob/main/Admin
