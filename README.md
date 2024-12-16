@@ -28,3 +28,4 @@ Edison1234
 654321
 # Código 
 https://github.com/Sebaslsst/Zool-gico/blob/main/Admin
+https://github.com/Sebaslsst/Zool-gico/blob/main/Models
