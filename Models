@@ -1,0 +1,75 @@
+from django.db import models
+
+from django.db import models
+
+class Persona(models.Model):
+    nombre = models.CharField(max_length=100)
+    edad = models.IntegerField()
+    fecha_nacimiento = models.DateField()
+
+    def _str_(self):
+        return self.nombre
+
+class Cliente(Persona):
+    tipo_cliente = models.CharField(max_length=50)
+
+class Empleado(Persona):
+    horario = models.TimeField()
+    zona_asignada = models.CharField(max_length=100)
+
+
+class Animale(models.Model):
+    nombre = models.CharField(max_length=100)
+    categoria = models.CharField(max_length=100, choices=[
+        ('mamifero', 'Mamífero'),
+        ('ave', 'Ave'),
+        ('reptil', 'Reptil'),
+        ('anfibio', 'Anfibio'),
+        ('pez', 'Pez'),
+        ('insecto', 'Insecto'),
+    ])
+    descripcion = models.TextField()
+
+    def _str_(self):
+        return self.nombre
+
+class Jaula(models.Model):
+    id_jaula = models.IntegerField()
+    ubicacion = models.CharField(max_length=200)
+    dimensiones = models.CharField(max_length=200)
+    estado = models.CharField(max_length=50)
+
+    def _str_(self):
+        return f"Jaula {self.id_jaula}"
+
+class Veterinaria(models.Model):
+    nombre = models.CharField(max_length=100)
+    especialidad = models.CharField(max_length=100)
+
+    def _str_(self):
+        return self.nombre
+
+class HorarioAlimentacion(models.Model):
+    horario = models.TimeField()
+    frecuencia = models.CharField(max_length=100)
+    animal = models.ForeignKey(Animale, on_delete=models.CASCADE, related_name='horarios_alimentacion')
+
+    def _str_(self):
+        return f"Alimentación de {self.animal.nombre} a las {self.horario}"
+
+class GuiaTuristico(models.Model):
+    nombre = models.CharField(max_length=100)
+    idioma = models.CharField(max_length=50)
+
+    def _str_(self):
+        return self.nombre
+
+
+class CompraBoleto(models.Model):
+    identificador = models.IntegerField()
+    fecha = models.DateField()
+    monto_total = models.FloatField()
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+
+    def _str_(self):
+        return f"Boleto {self.identificador} - {self.cliente.nombre}"
